@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Lesson extends Model
 {
     use HasFactory;
-
+    protected $guarded = ['id']; 
     public function questions()
     {
         return $this->hasMany(Question::class);

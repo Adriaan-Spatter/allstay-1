@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ModuleController;
-
+use App\Http\Controllers\LessonController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,6 +44,19 @@ Route::get('/dashboard', function () {
     //Destroy
     Route::delete('/admin/module-manager/{module}', [ModuleController::class, 'destroy'])->name('deleteModule');
     
+/*
+ *  LESSONS 
+*/
+    //Create (form for creating lesson)
+    Route::get('/admin/lesson-builder/{module}/create', [LessonController::class, 'create'])->name('createLesson');
+     //Store (store a new instance in database)
+    Route::post('/admin/lesson-builder/store', [LessonController::class, 'store'])->name('storeLesson');
+    //Edit (form for editing existing module)
+    Route::get('/admin/lesson-builder/{lesson}', [LessonController::class, 'edit'])->name('editLesson');
+    //Update (update existing database entry)
+    Route::put('/admin/lesson-builder/{lesson}', [LessonController::class, 'update'])->name('updateLesson');
+    //Destroy
+    Route::delete('/admin/lesson-builder/{lesson}', [LessonController::class, 'destroy'])->name('deleteLesson');
 //});
 
 require __DIR__.'/auth.php';

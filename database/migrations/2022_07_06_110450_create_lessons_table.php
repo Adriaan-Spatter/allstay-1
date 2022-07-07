@@ -17,7 +17,7 @@ class CreateLessonsTable extends Migration
     {
         Schema::create('lessons', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Module::class);
+            $table->foreignIdFor(Module::class)->constrained()->onDelete('cascade');
             $table->string('name', 255)->nullable();
             $table->string('introduction', 255)->nullable();
             $table->timestamps();

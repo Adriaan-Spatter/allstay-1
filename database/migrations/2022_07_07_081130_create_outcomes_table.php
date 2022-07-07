@@ -17,7 +17,7 @@ class CreateOutcomesTable extends Migration
     {
         Schema::create('outcomes', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Module::class);
+            $table->foreignIdFor(Module::class)->constrained()->onDelete('cascade');;
             $table->string('description', 255);
             $table->timestamps();
         });

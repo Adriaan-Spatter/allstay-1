@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Module;
+use App\Models\Lesson;
 
 class ModuleController extends Controller
 {
@@ -16,6 +17,7 @@ class ModuleController extends Controller
     public function show(Module $module){
         return view('admin.module.show', [
             'module' => $module,
+            'lessons' => Lesson::where('module_id', $module->id)->get(),
         ]);
     }
 
