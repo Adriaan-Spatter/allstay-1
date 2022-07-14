@@ -8,8 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     use HasFactory;
+    protected $guarded = ['id'];
+
+    public function parent()
+    {
+        return $this->belongsTo(Lesson::class);
+    }
     public function answer()
     {
-        return $this->hasMany(Answer::class);
+        return $this->hasOne(Answer::class);
     }
 }

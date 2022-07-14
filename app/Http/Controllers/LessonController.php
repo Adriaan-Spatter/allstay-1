@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Lesson;
 use App\Models\Module;
+use App\Models\Question;
 
 class LessonController extends Controller
 {

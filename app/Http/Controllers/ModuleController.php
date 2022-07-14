@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Module;
 use App\Models\Lesson;
+use App\Models\Question;
 
 class ModuleController extends Controller
 {
@@ -15,9 +16,12 @@ class ModuleController extends Controller
     }
     
     public function show(Module $module){
+        $lessons = $module->allLessons;
+        $questions = Question::join('lessons', 'lessons.id', '=', 'questions.lesson_id')->get();
         return view('admin.module.show', [
             'module' => $module,
-            'lessons' => Lesson::where('module_id', $module->id)->get(),
+            'lessons' => $lessons, 
+            'questions' => $questions,
         ]);
     }
 

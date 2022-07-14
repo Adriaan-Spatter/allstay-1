@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\LessonController;
+use App\Http\Controllers\QuestionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,9 +35,9 @@ Route::get('/dashboard', function () {
     //Show (single instance)
     Route::get('/admin/modules/{module}', [ModuleController::class, 'show'])->name('showModule');
     //Create (form for creating module)
-    Route::get('/admin/module-manager/create', [ModuleController::class, 'create'])->name('createModule');
+    Route::get('/admin/module-manager/create-module', [ModuleController::class, 'create'])->name('createModule');
     //Store (store a new instance in database)
-    Route::post('/admin/module-manager/store', [ModuleController::class, 'store'])->name('storeModule');
+    Route::post('/admin/module-manager/store-module', [ModuleController::class, 'store'])->name('storeModule');
     //Edit (form for editing existing module)
     Route::get('/admin/module-manager/{module}', [ModuleController::class, 'edit'])->name('editModule');
     //Update (update existing database entry)
@@ -48,15 +49,29 @@ Route::get('/dashboard', function () {
  *  LESSONS 
 */
     //Create (form for creating lesson)
-    Route::get('/admin/lesson-builder/{module}/create', [LessonController::class, 'create'])->name('createLesson');
-     //Store (store a new instance in database)
-    Route::post('/admin/lesson-builder/store', [LessonController::class, 'store'])->name('storeLesson');
-    //Edit (form for editing existing module)
+    Route::get('/admin/lesson-builder/{module}/add-lesson', [LessonController::class, 'create'])->name('createLesson');
+    //Store (store a new instance in database)
+    Route::post('/admin/lesson-builder/store-lesson', [LessonController::class, 'store'])->name('storeLesson');
+    //Edit (form for editing existing lesson)
     Route::get('/admin/lesson-builder/{lesson}', [LessonController::class, 'edit'])->name('editLesson');
     //Update (update existing database entry)
     Route::put('/admin/lesson-builder/{lesson}', [LessonController::class, 'update'])->name('updateLesson');
     //Destroy
     Route::delete('/admin/lesson-builder/{lesson}', [LessonController::class, 'destroy'])->name('deleteLesson');
+
+/*
+ *  QUESTIONS 
+*/
+    //Create (form for creating question)
+    Route::get('/admin/lesson-builder/{module}/{lesson}/add-question', [QuestionController::class, 'create'])->name('createQuestion');
+    //Store (store a new instance in database)
+    Route::post('/admin/lesson-builder/store-question', [QuestionController::class, 'store'])->name('storeQuestion');
+    //Edit (form for editing existing question)
+    Route::get('/admin/lesson-builder/{question}', [QuestionController::class, 'edit'])->name('editQuestion');
+    //Update (update existing database entry)
+    Route::put('/admin/lesson-builder/{question}', [QuestionController::class, 'update'])->name('updateQuestion');
+    //Destroy
+    Route::delete('/admin/lesson-builder/{question}', [QuestionController::class, 'destroy'])->name('deleteQuestion');
 //});
 
 require __DIR__.'/auth.php';
