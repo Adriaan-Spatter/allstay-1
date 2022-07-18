@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Module;
 use App\Models\Lesson;
 use App\Models\Question;
+use App\Models\Outcome;
 
 class ModuleController extends Controller
 {
