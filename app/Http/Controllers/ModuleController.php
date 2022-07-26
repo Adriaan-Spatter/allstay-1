@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\DashboardController;
 use App\Models\Module;
 use App\Models\Lesson;
 use App\Models\Question;
@@ -47,6 +48,7 @@ class ModuleController extends Controller
             'module' => $module,
         ]);
     }
+    
     public function update(Request $request, Module $module){
         $validated = $request->validate([
             'name' => 'required',

@@ -1,9 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\QuestionController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,13 +27,35 @@ Route::get('/dashboard', function () {
 */
 
 
+Route::middleware(['auth'])->group(function () {  
 
-//Route::middleware(['auth'])->group(function () {  
+    Route::get('/', function () {
+        return view('admin.index');
+    });    
+
+    Route::group(['middleware' => ['role:admin']], function () {
+/*
+ *  COMPANIES
+*/
+    //Index (show all instances)
+    Route::get('/admin/company-manager', [CompanyController::class, 'index'])->name('readCompany');
+    //Show (single instance)
+    Route::get('/admin/company/{company}', [CompanyController::class, 'show'])->name('showCompany');
+    //Create (form for creating module)
+    Route::get('/admin/company-manager/create-company', [CompanyController::class, 'create'])->name('createCompany');
+    //Store (store a new instance in database)
+    Route::post('/admin/company-manager/store-company', [CompanyController::class, 'store'])->name('storeCompany');
+    //Edit (form for editing existing module)
+    Route::get('/admin/company-manager/{company}', [CompanyController::class, 'edit'])->name('editCompany');
+    //Update (update existing database entry)
+    Route::put('/admin/company-manager/{company}', [CompanyController::class, 'update'])->name('updateCompany');
+    //Destroy
+    Route::delete('/admin/company-manager/{company}', [CompanyController::class, 'destroy'])->name('deleteCompany');
 /*
  *  MODULES
 */
     //Index (show all instances)
-    Route::get('/admin/module-manager', [ModuleController::class, 'index'])->name('readModule');
+    Route::get('/admin/curriculum-manager', [ModuleController::class, 'index'])->name('readModule');
     //Show (single instance)
     Route::get('/admin/modules/{module}', [ModuleController::class, 'show'])->name('showModule');
     //Create (form for creating module)
@@ -72,6 +96,6 @@ Route::get('/dashboard', function () {
     Route::put('/admin/lesson-builder/{question}', [QuestionController::class, 'update'])->name('updateQuestion');
     //Destroy
     Route::delete('/admin/lesson-builder/{question}', [QuestionController::class, 'destroy'])->name('deleteQuestion');
-//});
-
+    });
+});
 require __DIR__.'/auth.php';

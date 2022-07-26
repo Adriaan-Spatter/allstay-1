@@ -1,7 +1,6 @@
-@extends('layouts.admin_layout')
-@section('title', '')
-@section('header', '')
+@extends('layouts.master')
 @section('content')
+
 
 
 <div>
