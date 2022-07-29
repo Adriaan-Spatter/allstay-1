@@ -1,4 +1,5 @@
 <div>
+    <input type="hidden" name="curriculum_id" id="curriculum_id" value="{{ $curriculum->id }}">
     <label for="name">Module Name</label>
     <input type="text" name="name" id="name" @if(isset($module)) value="{{ $module->name }}" @endif>
     <label for="description">Description</label>

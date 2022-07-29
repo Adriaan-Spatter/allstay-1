@@ -10,6 +10,11 @@ class Module extends Model
     use HasFactory;
     protected $guarded = ['id']; 
 
+    public function parent()
+    {
+        return $this->belongsTo(Curriculum::class);
+    }
+
     public function lessons()
     {
         return $this->hasMany(Lesson::class);

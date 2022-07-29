@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DashboardController;
 use App\Models\Module;
+use App\Models\Curriculum;
 use App\Models\Lesson;
 use App\Models\Question;
 use App\Models\Outcome;
@@ -12,7 +13,7 @@ use App\Models\Outcome;
 class ModuleController extends Controller
 {
     public function index(){
-        return view('admin.module.index', [
+        return view('admin.curriculum.module.index', [
             'modules' => Module::all(),
         ]);
     }
@@ -20,15 +21,17 @@ class ModuleController extends Controller
     public function show(Module $module){
         $lessons = $module->allLessons;
         $questions = Question::join('lessons', 'lessons.id', '=', 'questions.lesson_id')->get();
-        return view('admin.module.show', [
+        return view('admin.curriculum.module.show', [
             'module' => $module,
             'lessons' => $lessons, 
             'questions' => $questions,
         ]);
     }
 
-    public function create(){
-        return view('admin.module.create');
+    public function create(Curriculum $curriculum){
+        return view('admin.curriculum.module.create', [
+            'curriculum' => $curriculum,
+        ]);
     }
 
     public function store(Request $request){
@@ -38,14 +41,16 @@ class ModuleController extends Controller
             'notes' => 'nullable',
             'difficulty' => 'nullable|numeric|gte:0|lte:10',
             'duration' => 'nullable|numeric|gt:0',
+            'curriculum_id' => 'required',
         ]);
         Module::create($validated);
-        return redirect()->back()->with('status', 'Module Successfully Added');  
+        return redirect()->back()->with('status', 'Module Successfully Added'); 
     }
 
-    public function edit(Module $module){
-        return view('admin.module.edit', [
+    public function edit(Curriculum $curriculum, Module $module){
+        return view('admin.curriculum.module.edit', [
             'module' => $module,
+            'curriculum' => $curriculum,
         ]);
     }
     

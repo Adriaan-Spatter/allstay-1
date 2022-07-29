@@ -1,4 +1,4 @@
-<nav class="navbar bg-warning navbar-expand-lg">
+<nav class="navbar bg-light navbar-expand-lg">
     <div class="container-fluid">
       <a class="navbar-brand" href="">All Stay</a>
     </div>

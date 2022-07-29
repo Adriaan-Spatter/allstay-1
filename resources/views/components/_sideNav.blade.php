@@ -8,22 +8,7 @@
   <div class="offcanvas-body">
     <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link" href="">Overview</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="">Learning Modules</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="">Quick Reference</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('readCompany') }}">Company Manager</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('readModule') }}">Curriculum Manager</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="">Settings</a>
+            <a class="nav-link" href="{{ route('readCurriculum') }}">Curriculum Manager</a>
         </li>
         <li class="nav-item">
             <form method="POST" action="{{ route('logout') }}">

@@ -18,7 +18,7 @@ class QuestionController extends Controller
     }
 
     public function create(Module $module, Lesson $lesson){
-        return view('admin.module.lesson.question.create', [
+        return view('admin.curriculum.module.lesson.question.create', [
             'module' => $module,
             'lesson' => $lesson,
         ]);
@@ -35,7 +35,7 @@ class QuestionController extends Controller
     }
 
     public function edit(Question $question){
-        return view('admin.module.lesson.question.edit', [
+        return view('admin.curriculum.module.lesson.question.edit', [
             'question' => $question,
         ]);
     }

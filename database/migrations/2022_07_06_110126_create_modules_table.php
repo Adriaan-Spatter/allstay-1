@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use App\Models\Curriculum;
+
 class CreateModulesTable extends Migration
 {
     /**
@@ -15,6 +17,7 @@ class CreateModulesTable extends Migration
     {
         Schema::create('modules', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Curriculum::class)->constrained()->onDelete('cascade');
             $table->string('name', 255);
             $table->string('description', 255)->nullable();
             $table->string('notes', 255)->nullable();

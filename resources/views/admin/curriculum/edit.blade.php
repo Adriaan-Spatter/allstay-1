@@ -9,10 +9,10 @@
 @endif
 
 <div>
-    <form method="POST" action="{{ route('updateModule', ['module' => $module->id]) }}">
+    <form method="POST" action="{{ route('updateCurriculum', ['curriculum' => $curriculum->id]) }}">
     @csrf
     @method('PUT')
-        @include('components._adminModule')
+        @include('components._adminCurriculum')
         <button class="btn btn-success" type="submit">Submit Changes</button>
     </form>
 </div>

@@ -18,7 +18,7 @@ class LessonController extends Controller
     }
 
     public function create(Module $module){
-        return view('admin.module.lesson.create', [
+        return view('admin.curriculum.module.lesson.create', [
             'module' => $module,
         ]);
     }
@@ -34,7 +34,7 @@ class LessonController extends Controller
     }
 
     public function edit(Lesson $lesson, Module $module){
-        return view('admin.module.lesson.edit', [
+        return view('admin.curriculum.module.lesson.edit', [
             'lesson' => $lesson,
             'module' => $module,
         ]);
